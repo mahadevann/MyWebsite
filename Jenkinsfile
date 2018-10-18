@@ -5,7 +5,7 @@ pipeline {
             steps {
                 sh '''
 		python --version
-		python manage.py runserver	
+		export JENKINS_NODE_COOKIE=dontKillMe python manage.py runserver	
 		'''
             }
         }
