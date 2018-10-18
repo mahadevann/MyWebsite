@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/static/Default.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+body, html {
+    height: 100%;
+    line-height: 1.8;
+}
+/* Full height image header */
+.bgimg-1 {
+    background-size: cover;
+    background: url("/static/images/homebg1.jpg") center;
+    min-height: 100%;
+}
+.w3-bar .w3-button {
+    padding: 16px;
+}
+</style>
+<body>
+
+{% include "blogsite/HeaderBar.html" %}
+
+
+<p>blank</p>
+<form action="/your-name/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="w3-container w3-light-grey w3-padding-24">
+        <div class="w3-row-padding">
+            <div class="w3-col m10">
+                {{ form }}
+                {% if form.formname == "uploadfile" %}
+                <input type="submit" name="File" value="SubmitFile">
+                {% else %}
+                <input type="submit" name="choice" value="SubmitChoice">
+            {% endif %}
+            </div>
+        </div>
+        <div class="w3-col m10">
+                    <img src="static/images/temp1.png">
+        </div>
+    </div>
+</form>
+
+</body>
+</html>
+

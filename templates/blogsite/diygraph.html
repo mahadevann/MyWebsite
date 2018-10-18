@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/static/Default.css">
+<link rel="stylesheet" href="/static/modal.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+    /* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5px auto; /* 15% from the top and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    /* Position it in the top right corner outside of the modal */
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+/* Close button on hover */
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+body, html {
+    height: 100%;
+    line-height: 1.8;
+}
+/* Full height image header */
+.bgimg-1 {
+    background-size: cover;
+    background: url("/static/images/homebg1.jpg") center;
+    min-height: 100%;
+}
+.w3-bar .w3-button {
+    padding: 16px;
+}
+</style>
+<script type="text/javascript">
+    var toptval = [];
+    var topttext = [];
+
+    function dothis() {
+        var select1 = document.getElementById("id_County");
+        var select2 = document.getElementById("id_Township");
+
+
+        if (topttext.length == 0){
+            var options = document.getElementById('id_Township').options;
+
+            var i = 0, len = options.length;
+
+            while (i < len) {
+                toptval.push(options[i].value);
+                topttext.push(options[i].text)
+                i++
+            }
+        }
+        //alert(toptions.join(', '));
+        while (select2.firstChild) {
+            select2.removeChild(select2.firstChild);
+        }
+        if (select1.selectedIndex == 0) {
+            return;
+        }
+
+        for (var i = 0; i < toptval.length; i++) {
+            if(select1.options[select1.selectedIndex].text == toptval[i].split(':')[1]) {
+                var o = document.createElement("option");
+                o.value = toptval[i];
+                o.text = topttext[i];
+                select2.appendChild(o);
+            }
+        }
+    }
+
+
+    select1.onchange = function() {
+        alert("ss");
+    // empty select2
+    while (select2.firstChild) {
+        select2.removeChild(select2.firstChild);
+    }
+    if (select1.selectedIndex == 0) {
+        return;
+    }
+    for (var i = select1.selectedIndex; i < select1.options.length; i++) {
+        var o = document.createElement("option");
+        o.value = select1.options[i].value;
+        o.text = select1.options[i].text;
+        select2.appendChild(o);
+    }
+}
+</script>
+<body>
+
+{% include "blogsite/HeaderBar.html" %}
+
+
+<p>blank</p>
+<form action="/your-name/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="w3-container w3-light-grey w3-padding-24">
+
+        <div class="w3-row-padding">
+        <div class="w3-col m1"><p></p></div>
+            <div class="w3-col m3">
+                {{ form.County.label_tag }}
+                {{ form.County }}
+            </div>
+            <div class="w3-col m3">
+                {{ form.Township.label_tag }}
+                {{ form.Township }}
+            </div>
+            <div class="w3-col m2">
+                {{ form.Year_From.label_tag }}
+                {{ form.Year_From }}
+            </div>
+        <div class="w3-col m3">
+                {% if form.formname == "uploadfile" %}
+                <input type="submit" name="File" value="SubmitFile">
+                {% else %}
+                <input type="submit" name="choice" value="Generate Graph">
+            {% endif %}
+            </div>
+        </div>
+        <div class="w3-col m12">
+                    <img src={{form.image_src}} style="width:100%">
+        </div>
+<p style="font-size: x-small"><u> How to understand box plot</u><button onclick="document.getElementById('id01').style.display='block'">?</button>
+</p>
+    </div>
+</form>
+<!-- Button to open the modal login form -->
+
+<!-- The Modal -->
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'"
+class="close" title="Close Modal">&times;</span>
+
+  <!-- Modal Content -->
+  <form class="w3-col animate">
+    <div class="imgcontainer">
+      <img src="/static/images/box.jpg" alt="Avatar" class="avatar">
+    </div>
+
+  </form>
+</div>
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>
+

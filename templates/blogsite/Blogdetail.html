@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/static/blogstyle.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.mySlides {display:none;}
+</style>
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+<style>
+.mySlides {display:none;}
+</style>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+body, html {
+    height: 100%;
+    line-height: 1.8;
+}
+/* Full height image header */
+.bgimg-1 {
+    background-size: cover;
+    background: url("/static/images/homebg1.jpg") center;
+    min-height: 100%;
+}
+.w3-bar .w3-button {
+    padding: 16px;
+}
+</style>
+<body class="w3-light-grey">
+
+{% include "blogsite/HeaderBar.html" %}
+
+<!-- w3-content defines a container for fixed size centered content,
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content" style="max-width:1400px">
+
+<p></p>
+<!-- Grid -->
+<div class="w3-row w3-padding-48">
+
+<!-- Blog entries -->
+<div class="w3-col l8 s12">
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+    <!--img src="/w3images/woods.jpg" alt="Nature" style="width:100%"-->
+    <div class="w3-container">
+      <h3><b>Are you looking at buying a house in New Jersey ?</b></h3>
+      <h5>Here is a look into historical home prices across New Jersey counties.., <span class="w3-opacity">Sep 20, 2018</span></h5>
+    </div>
+
+    <div class="w3-container">
+        <p>When you start researching to buy a house, you immediately start looking at sites like Zillow or Trulia.
+            While they provide a lot of information about individual house and its features, it is hard to find high level
+            information like <br>
+            - what was the average price of homes sold in a township over the years<br>
+            - how may houses were sold in a year or a month in a particular townhship. <br><br>
+            This kind of information will provide some insight into stability of price, strength of housing market, affordability etc
+        </p>
+    <p>
+        Based on data available in NJ State Department of Treasurey, I have compiled average sale price of home in each township, the number
+        of houses sold in a year and month.
+    </p>
+
+        <h4 class="w3-center">Average sale price by township</h4>
+
+        <div class="w3-content w3-display-container">
+            {% for filen in plots %}
+            <img class="mySlides" src='/static/images/Essex/sales/{{ filen }}' style="width:100%;max-height:450px">
+            {% endfor %}
+
+
+          <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1,1)">&#10094;</button>
+          <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1,1)">&#10095;</button>
+        </div>
+
+
+        <p>Next we can see the number of houses sold in each township grouped by year.
+        </p>
+        <h2 class="w3-center">Number of houses sold in each township every year</h2>
+
+            <div class="w3-content w3-display-container">
+            {% for filec in counts %}
+            <img class="mycounts" src='/static/images/Essex/sales/{{ filec }}' style="width:100%;max-height:450px">
+            {% endfor %}
+
+
+          <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1,2)">&#10094;</button>
+          <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1,2)">&#10095;</button>
+        </div>
+
+      <div class="w3-row">
+        <div class="w3-col m8 s12">
+          <p><span class="w3-padding-large"><b>First 1,2,3 Last &nbsp;</b> </span></p>
+        </div>
+        <div class="w3-col m4 w3-hide-small">
+          <p><span class="w3-padding-large w3-right"><b>Comments &nbsp;</b> <span class="w3-tag">0</span></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+       <script>
+            var slideIndex = 1;
+            showDivs(slideIndex,1);
+            showDivs(slideIndex,2);
+
+            function plusDivs(n,type) {
+              showDivs(slideIndex += n,type);
+            }
+
+            function showDivs(n,type) {
+              var i;
+              if (type==1) {
+                  var x = document.getElementsByClassName("mySlides");
+              } else {
+                  var x = document.getElementsByClassName("mycounts");
+              }
+              if (n > x.length) {slideIndex = 1}
+              if (n < 1) {slideIndex = x.length}
+              for (i = 0; i < x.length; i++) {
+                 x[i].style.display = "none";
+              }
+              x[slideIndex-1].style.display = "block";
+            }
+        </script>
+<!-- END BLOG ENTRIES -->
+</div>
+
+<!-- Introduction menu -->
+<div class="w3-col l4">
+  <!-- About Card -->
+  <div class="w3-card w3-margin w3-margin-top">
+  <img src="/w3images/avatar_g.jpg" style="width:100%">
+    <div class="w3-container w3-white">
+      <h4><b>My Name</b></h4>
+      <p>Just me, myself and I, exploring the universe of uknownment. I have a heart of love and a interest of lorem ipsum and mauris neque quam blog. I want to share my world with you.</p>
+    </div>
+  </div><hr>
+
+  <!-- Posts -->
+  <div class="w3-card w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Popular Posts</h4>
+    </div>
+    <ul class="w3-ul w3-hoverable w3-white">
+      <li class="w3-padding-16">
+        <img src="/w3images/workshop.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+        <span class="w3-large">Lorem</span><br>
+        <span>Sed mattis nunc</span>
+      </li>
+      <li class="w3-padding-16">
+        <img src="/w3images/gondol.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+        <span class="w3-large">Ipsum</span><br>
+        <span>Praes tinci sed</span>
+      </li>
+      <li class="w3-padding-16">
+        <img src="/w3images/skies.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+        <span class="w3-large">Dorum</span><br>
+        <span>Ultricies congue</span>
+      </li>
+      <li class="w3-padding-16 w3-hide-medium w3-hide-small">
+        <img src="/w3images/rock.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+        <span class="w3-large">Mingsum</span><br>
+        <span>Lorem ipsum dipsum</span>
+      </li>
+    </ul>
+  </div>
+  <hr>
+
+  <!-- Labels / tags -->
+  <div class="w3-card w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Tags</h4>
+    </div>
+    <div class="w3-container w3-white">
+    <p><span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">London</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">IKEA</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">NORWAY</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">DIY</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Baby</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Family</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">News</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Clothing</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Shopping</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Sports</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Games</span>
+    </p>
+    </div>
+  </div>
+
+<!-- END Introduction Menu -->
+</div>
+
+<!-- END GRID -->
+</div><br>
+
+<!-- END w3-content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+  <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
+  <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Next &raquo;</button>
+</footer>
+
+</body>
+</html>

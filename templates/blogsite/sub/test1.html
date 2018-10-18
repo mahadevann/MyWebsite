@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/Default.css">
+    <meta charset="UTF-8">
+    <title>test page</title>
+    <STYLE>
+        .card {
+        width: 300px;
+        border: 25px solid green;
+        padding: 10px;
+        margin: 25px;
+        }
+        .w3-card,.w3-card-2{box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)}
+        .w3-hover-shadow:hover{box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19)}
+        .w3-bar{width:100%;overflow:hidden;background: #00bcd4}.w3-center .w3-bar{display:inline-block;width:auto}
+        .w3-ul{list-style-type:none;padding:0;margin:0;width: 60px}.w3-ul li{padding:8px 16px;border-bottom:1px solid #ddd}.w3-ul li:last-child{border-bottom:none}
+    </STYLE>
+</head>
+<body>
+</body>
+{% include "blogsite/HeaderBar.html" %}
+
+<div class="w3-card"> sample 4 text</div>
+<div class="w3-border-bottom">second div</div>
+<ul class="w3-ul">
+<li >1</li>
+    <li >2</li>
+    <li >3</li>
+</ul>
+
+<ul>
+  <li><a href="#home">Home</a></li>
+  <li><a href="#news">News</a></li>
+  <li><a href="#contact">Contact</a></li>
+  <li><a href="#about">About</a></li>
+</ul>
+
+<div class="w3-container">
+  <h3>Mobile First Fluid Grid</h3>
+  <p class="w3-large">Try to resize the window!</p>
+</div>
+
+<div class="w3-row">
+  <div class="w3-col m1 w3-center w3-grey">1</div>
+  <div class="w3-col m1 w3-center">2</div>
+  <div class="w3-col m1 w3-center w3-grey">3</div>
+  <div class="w3-col m1 w3-center">4</div>
+  <div class="w3-col m1 w3-center w3-grey">5</div>
+  <div class="w3-col m1 w3-center">6</div>
+  <div class="w3-col m1 w3-center w3-grey">7</div>
+  <div class="w3-col m1 w3-center">8</div>
+  <div class="w3-col m1 w3-center w3-grey">9</div>
+  <div class="w3-col m1 w3-center">10</div>
+  <div class="w3-col m1 w3-center w3-grey">11</div>
+  <div class="w3-col m1 w3-center">12</div>
+</div>
+
+<div class="w3-row">
+  <div class="w3-col w3-container m4 l3 ">
+<p></p>
+  </div>
+  <div class="w3-col w3-container m8 l9">
+    <p>This part will occupy 12 columns 12 on a small screen, 8 on a medium screen, and 9 on a large screen.</p>
+    <p>This part will occupy 12 columns on a small screen, 8 on a medium screen, and 9 on a large screen.</p>
+  </div>
+</div>
+<div class="w3-row">
+  <div class="w3-col w3-container m4 l3 w3-yellow">
+    <p>This part will occupy 12 columns on a small screen, 4 on a medium screen, and 3 on a large screen.</p>
+  </div>
+
+  <div class="w3-col w3-container m8 l9">
+    <p>This part will occupy 12 columns 12 on a small screen, 8 on a medium screen, and 9 on a large screen.</p>
+    <p>This part will occupy 12 columns on a small screen, 8 on a medium screen, and 9 on a large screen.</p>
+  </div>
+</div>
+
+<h2 class="w3-center">Manual Slideshow</h2>
+
+<div class="w3-content w3-display-container">
+  <img class="mySlides" src="img_snowtops.jpg" style="width:100%">
+  <img class="mySlides" src="img_lights.jpg" style="width:100%">
+  <img class="mySlides" src="img_mountains.jpg" style="width:100%">
+  <img class="mySlides" src="img_forest.jpg" style="width:100%">
+
+  <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+  <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+</div>
+
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  x[slideIndex-1].style.display = "block";
+}
+</script>
+</body>
+</html>
