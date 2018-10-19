@@ -3,7 +3,7 @@ pipeline {
     stages {
 	stage('Web') {
 		steps{
-		sh "dcoker run -d -p mahadevann/myenv:test1"
+		sh "docker run -d -p mahadevann/myenv:test1"
 		}
 	}
         stage('build') {
